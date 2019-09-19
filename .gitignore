@@ -2,6 +2,7 @@ autoload/plug.vim
 plugged
 tmp/*
 bundle/*
+sessions/*
 tags
 .DS_Store
 .netrwhist

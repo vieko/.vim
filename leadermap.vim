@@ -4,54 +4,65 @@
 " better leader
 let mapleader=" "
 
-" switch between the last two files
-nnoremap <leader><leader> <C-^>
-
-" open explorer
-nnoremap <silent><leader>\ :call DefxOpen()<CR>
-
 " LEADER -
-"        SPC    → find file in project (git based)
-"        '      → resume last seahjjch
-"        *      → search for symbol in project
-"        .      → find file
-"        <      → switch buffer
-"        `      → switch to last buffer
-"        SEARCH /
-"               d      → search current directory
-"               b      → search buffer
-"               k      → look up in local docset
-"               p      → search project
-"        BUFFER b
-"               B      → switch buffer
-"               N      → new empty buffer
-"               [      → previous buffer
-"               ]      → next buffer
-"               d      → kill buffer
-"               k      → kill buffer
-"               l      → switch to last buffer
-"               n      → next buffer
-"               p      → previous buffer
-"               s      → save buffer
-"        CODE   c
-"               W      → delete trailing newlines
-"               d      → jump to definition
-"               f      → format buffer / region
-"               k      → jump to documentation
-"               w      → delete trailing whitespace
-"               x      → list errors
-"        FILES  f
-"               .      → find file
-"               /      → find file from here
-"
-"
-"
-
-" save
-nnoremap <leader>bs :w!<CR>
-
-" close current buffer and move to previous one
-nnoremap <leader>bq :bd<BAR>bd#<CR>
+"        SPC     → find file in project (git based)
+         nnoremap <leader><leader> :<C-u>CocList files<CR>
+"        '       → resume last search
+         nnoremap <leader>' :<C-u>CocListResume<CR>
+"        *       → search for symbol in project
+         nnoremap <leader>* :<C-u>CocList symbols<CR>
+"        .       → find file
+         nnoremap <leader>. :<C-u>CocList files<CR>
+"        <       → switch buffer
+         nnoremap <leader>< :<C-u>CocList buffers<CR>
+"        `       → switch to last buffer
+         nnoremap <leader>` <C-^>
+"        SEARCH  /
+"                d      → search current directory
+                 nnoremap <leader>/d :<C-u>CocList files<CR>
+"                b      → search buffer
+                 nnoremap <leader>/b :<C-u>CocList lines<CR>
+"                k      → look up in local docset
+                 nnoremap <silent><leader>/k :call <SID>ShowDocumentation()<CR>
+"                p      → search project
+"        BUFFER  b
+"                B      → switch buffer
+                 nnoremap <leader>bB :<C-u>CocList buffers<CR>
+"                N      → new empty buffer
+                 nnoremap <silent><leader>bN :enew<CR>
+"                d      → kill buffer
+                 nnoremap <silent><leader>bd :bd<CR>
+"                k      → kill buffer
+                 nnoremap <leader>bk :bd<CR>
+"                n      → next buffer
+                 nnoremap <silent><leader>bn :<C-u>CocNext<CR>
+"                p      → previous buffer
+                 nnoremap <silent><leader>bp :<C-u>CocPrev<CR>
+"                s      → save buffer
+                 nnoremap <leader>bs :w!<CR>
+"        CODE    c
+"                W      → delete trailing newlines
+"                d      → jump to definition
+"                f      → format buffer / region
+"                k      → jump to documentation
+"                w      → delete trailing whitespace
+"                x      → list errors
+"        FILES   f
+"                .      → find file
+"                /      → find file from here
+"                V      → browser neovim config
+"                R      → recent project files
+"                v      → find file in neovim config
+"                r      → recent files
+"                s      → save file
+"                y      → yank filename
+"        GIT     g
+"        OPEN    o
+"                p      → project sidebar
+                 nnoremap <silent><leader>op :call DefxOpen()<CR>
+"        PROJECT p
+"                .      → browse project
+"                /      → find file in project
 
 " change pwd to current working directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -70,7 +81,7 @@ nnoremap <leader>rl :source ~/.config/nvim/.vimrc<CR>
 nmap <leader>rn <Plug>(coc-rename)
 
 " search with grep
-nnoremap <leader>/ :Rg<space>
+" nnoremap <leader>/ :Rg<space>
 
 " clean some dirty charactors
 nnoremap <silent><leader>cl :<C-u>call <SID>Clean()<CR>
@@ -81,7 +92,7 @@ nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
   \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap <silent> <leader>pp "0p
-nnoremap <silent> <leader>o :call <SID>Open()<CR>
+" nnoremap <silent> <leader>o :call <SID>Open()<CR>
 
 
 " remap for format selected region
@@ -169,5 +180,15 @@ function! s:Open()
     echoerr output
   endif
 endfunction
+
+function! s:ShowDocumentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+
 
 
