@@ -1,7 +1,7 @@
 call plug#begin($XDG_DATA_HOME.'/vim/bundle')
 " completion
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 " explorer
 Plug 'Shougo/defx.nvim'
 Plug 'kristijanhusak/defx-git'

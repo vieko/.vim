@@ -1,6 +1,7 @@
 " Section: Commands
 " -----------------
 
+command! -nargs=0 Lookup                               :call     s:ShowDocumentation()
 command! -nargs=0 Save                                 :call     s:Save()
 command! -nargs=0 Format                               :call     CocAction('format')
 command! -nargs=0 Prettier                             :call     CocAction('runCommand', 'prettier.formatFile')
@@ -45,4 +46,12 @@ function! s:Save()
   let file = $HOME.'/tmp.log'
   let content = getline(1, '$')
   call writefile(content, file)
+endfunction
+
+function! s:ShowDocumentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction

@@ -5,41 +5,44 @@
 let mapleader=" "
 
 " LEADER -
-"        SPC     → find file in project (git based)
-         nnoremap <leader><leader> :<C-u>CocList files<CR>
+"        SPC     → find file in project
+         nnoremap <leader><leader> :<C-u>CocList files -F --hidden<CR>
 "        '       → resume last search
          nnoremap <leader>' :<C-u>CocListResume<CR>
 "        *       → search for symbol in project
          nnoremap <leader>* :<C-u>CocList symbols<CR>
-"        .       → find file
-         nnoremap <leader>. :<C-u>CocList files<CR>
+"        .       → find recent file
+         nnoremap <leader>. :<C-u>CocList mru<CR>
 "        <       → switch buffer
          nnoremap <leader>< :<C-u>CocList buffers<CR>
 "        `       → switch to last buffer
          nnoremap <leader>` <C-^>
 "        SEARCH  /
-"                d      → search current directory
-                 nnoremap <leader>/d :<C-u>CocList files<CR>
-"                b      → search buffer
+"                d      → find file in current directory
+                 nnoremap <leader>/d :<C-u>CocList files --hidden<CR>
+"                b      → search current buffer
                  nnoremap <leader>/b :<C-u>CocList lines<CR>
 "                k      → look up in local docset
-                 nnoremap <silent><leader>/k :call <SID>ShowDocumentation()<CR>
+                 nnoremap <silent><leader>/k :Lookup<CR>
 "                p      → search project
+                 nnoremap <leader>/p :Rg<space>
 "        BUFFER  b
 "                B      → switch buffer
                  nnoremap <leader>bB :<C-u>CocList buffers<CR>
 "                N      → new empty buffer
-                 nnoremap <silent><leader>bN :enew<CR>
+                 nnoremap <leader>bN :enew<CR>
 "                d      → kill buffer
-                 nnoremap <silent><leader>bd :bd<CR>
+                 nnoremap <leader>bd :bd<CR>
 "                k      → kill buffer
                  nnoremap <leader>bk :bd<CR>
-"                n      → next buffer
-                 nnoremap <silent><leader>bn :<C-u>CocNext<CR>
+"                n      → nfindext buffer
+                 nnoremap <leader>bn :<C-u>CocNext<CR>
 "                p      → previous buffer
-                 nnoremap <silent><leader>bp :<C-u>CocPrev<CR>
+                 nnoremap <leader>bp :<C-u>CocPrev<CR>
 "                s      → save buffer
                  nnoremap <leader>bs :w!<CR>
+"                w      → save buffer
+                 nnoremap <leader>bw :w!<CR>
 "        CODE    c
 "                W      → delete trailing newlines
 "                d      → jump to definition
@@ -49,9 +52,11 @@ let mapleader=" "
 "                x      → list errors
 "        FILES   f
 "                .      → find file
+                 nnoremap <leader>f. :<C-u>CocList files -F --hidden<CR>
 "                /      → find file from here
+                 nnoremap <leader>f/ :<C-u>CocList files --hidden<CR>
 "                V      → browser neovim config
-"                R      → recent project files
+"                R      → recent files
 "                v      → find file in neovim config
 "                r      → recent files
 "                s      → save file
@@ -61,8 +66,19 @@ let mapleader=" "
 "                p      → project sidebar
                  nnoremap <silent><leader>op :call DefxOpen()<CR>
 "        PROJECT p
-"                .      → browse project
-"                /      → find file in project
+"                P     → find file in project
+                 nnoremap <leader>pP :<C-u>CocList files -F --hidden<CR>
+"                /      → searcjh project
+                 nnoremap <leader>p/ :Rg<space>
+"        HELP    h
+"                r      → reload vim
+                 nnoremap <leader>hr :source ~/.config/nvim/.vimrc<CR>
+"                k      → look up in the docset
+                 nnoremap <leader>hh :call <SID>ShowDocumentation()<CR>
+"                i      → highlight group under cursor
+                 nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " change pwd to current working directory
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -74,22 +90,11 @@ nnoremap <silent><Leader><CR> :noh<CR>
 " replace all of current word
 nnoremap <leader>rs :%s/\<<C-r><C-w>\>//g<left><left>
 
-" reload vimrc file
-nnoremap <leader>rl :source ~/.config/nvim/.vimrc<CR>
- 
 " remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" search with grep
-" nnoremap <leader>/ :Rg<space>
-
 " clean some dirty charactors
 nnoremap <silent><leader>cl :<C-u>call <SID>Clean()<CR>
-
-" show vim highlight group under cursor
-nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-  \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nnoremap <silent> <leader>pp "0p
 " nnoremap <silent> <leader>o :call <SID>Open()<CR>
@@ -181,13 +186,13 @@ function! s:Open()
   endif
 endfunction
 
-function! s:ShowDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:ShowDocumentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 
 

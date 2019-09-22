@@ -57,7 +57,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " create mappings for function text object, requires document symbols feature of languageserver.
 " xmap if <Plug>(coc-funcobj-i)
@@ -102,31 +102,23 @@ function! s:gpush()
   endif
 endfunction
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 " coc-lists
-nnoremap <silent> \r  :<C-u>CocList -N mru -A<CR>
-nnoremap <silent> <space>h  :<C-u>CocList helptags<CR>
-nnoremap <silent> <space>g  :<C-u>CocList gstatus<CR>
-nnoremap <silent> <space>t  :<C-u>CocList buffers<cr>
-nnoremap <silent> <space>fy  :<C-u>CocList yank<cr>
+" nnoremap <silent> \r  :<C-u>CocList -N mru -A<CR>
+" nnoremap <silent> <space>h  :<C-u>CocList helptags<CR>
+" nnoremap <silent> <space>g  :<C-u>CocList gstatus<CR>
+" nnoremap <silent> <space>t  :<C-u>CocList buffers<cr>
+" nnoremap <silent> <space>fy  :<C-u>CocList yank<cr>
 " nnoremap <silent> <space>u  :<C-u>CocList snippets<cr>
 " nnoremap <silent> <space>w  :exe 'CocList -A -I --normal --input='.expand('<cword>').' words -w'<CR>
-nnoremap <silent> <space>fl  :<C-u>CocList locationlist<CR>
-nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
-nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
-nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
-nnoremap <silent> <space>fo  :<C-u>CocList outline<CR>
-nnoremap <silent> <space>s  :<C-u>CocList symbols<CR>
-nnoremap <silent> <space>r  :<C-u>CocList mru<CR>
-nnoremap <silent> <space>f  :<C-u>CocList files<CR>
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" nnoremap <silent> <space>fl  :<C-u>CocList locationlist<CR>
+" nnoremap <silent> <space>q  :<C-u>CocList quickfix<CR>
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
+" nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
+" nnoremap <silent> <space>fo  :<C-u>CocList outline<CR>
+" nnoremap <silent> <space>s  :<C-u>CocList symbols<CR>
+" nnoremap <silent> <space>r  :<C-u>CocList mru<CR>
+" nnoremap <silent> <space>f  :<C-u>CocList files<CR>
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>

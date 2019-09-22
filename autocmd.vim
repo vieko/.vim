@@ -15,7 +15,7 @@ augroup common
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufEnter,FocusGained * checktime
 
-  autocmd CursorHold * silent! call CocActionAsync('highlight')
+  " autocmd CursorHold * silent! call CocActionAsync('highlight')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
@@ -47,7 +47,7 @@ function! EmptyBuffer()
 endfunction
 
 function! s:Highlight() abort
-  " if !has('gui_running') | hi normal guibg=NONE | endif
+  if !has('gui_running') | hi normal guibg=NONE | endif
   hi link CocCursorRange         Search
   hi link CocErrorSign           GruvboxRedSign
   hi link CocWarningSign         GruvboxYellowSign
@@ -57,13 +57,13 @@ function! s:Highlight() abort
   hi link CocWarningVirtualText  GruvboxBg2
   hi link CocInfoVirtualText     GruvboxBg2
   hi link CocHintVirtualText     GruvboxBg2
-  hi link CocFloating            SignColumn
   hi link MsgSeparator           MoreMsg
   hi VertSplit                   guifg=#3c3836
   hi ColorColumn                 guibg=#1d2021
   hi HighlightedyankRegion       guibg=#d65d0e
   hi CursorLineNr                guifg=#7c6f64
   hi LineNr                      guifg=#504945
+  hi CocFloating                 guifg=#928374 guibg=#504945
 endfunction
 
 function! s:OnFileType(filetype)

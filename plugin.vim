@@ -21,8 +21,9 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
  
 " vim-matchup
-let g:matchup_transmute_enabled=0
 let g:matchup_matchparen_deferred=1
+let g:matchup_matchparen_enabled=0
+let g:matchup_matchparen_offscreen={}
 
 " defx
 let g:defx_icons_enable_syntax_highlight = 0
@@ -38,8 +39,8 @@ let g:netrw_localrmdir='rmtrash'
 let g:netrw_bufsettings = "noma nomod nonu nobl nowrap ro nornu buftype=nofile"
 
 " echodoc
-let g:echodoc_enable_at_startup=1
-let g:echodoc#type='virtual'
+" let g:echodoc_enable_at_startup=1
+" let g:echodoc#type='virtual'
 
 " polyglot
 let g:jsx_ext_required=0

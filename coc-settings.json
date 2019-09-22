@@ -1,9 +1,16 @@
 {
   "coc.preferences.formatOnType": false,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascript.jsx", "javascriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "javascript.jsx",
+    "javascriptreact"
+  ],
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.enableFloatHighlight": false,
 
   "coc.source.around.firstMatch": false,
-  "coc.source.buffer.firstMatch":false,
+  "coc.source.buffer.firstMatch": false,
 
   "yank.highlight.duration": 100,
   "yank.highlight.enable": true,
@@ -13,6 +20,22 @@
 
   "list.source.grep.command": "rg",
   "list.source.grep.defaultOptions": ["--number-select"],
+  "list.source.files.defaultOptions": ["--number-select"],
+  "list.source.mru.defaultOptions": ["--number-select"],
+  "list.source.mru.maxLength": 50,
+  "list.source.mru.ignoreGitIgnore": true,
+
+  "list.normalMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k",
+    "<C-c>": "do:exit"
+  },
+
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k",
+    "<C-c>": "do:exit"
+  },
 
   "git.addedSign.text": "+",
   "git.changedSign.text": "~",
@@ -27,8 +50,7 @@
   "git.topRemovedSign.hlGroup": "GruvboxRedSign",
   "git.changeRemovedSign.hlGroup": "GruvboxRedSign",
 
-  "signature.enable": true,
-  "signature.target": "echo",
+  "signature.enable": false,
 
   "diagnostic.level": "information",
   "diagnostic.infoSign": "··",
@@ -37,8 +59,9 @@
   "diagnostic.errorSign": "××",
   "diagnostic.enableSign": true,
   "diagnostic.enable": true,
-  "diagnostic.virtualText": true ,
+  "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
+  "diagnostic.enableMessage": "never",
   "diagnostic.messageTarget": "echo",
   "diagnostic.refreshAfterSave": false,
   "diagnostic.refreshOnInsertMode": false,
@@ -53,33 +76,33 @@
   "suggest.triggerAfterInsertEnter": false,
   "suggest.labelMaxLength": 200,
   "suggest.detailMaxLength": 100,
-  "suggest.echodocSupport": true,
+  "suggest.echodocSupport": false,
   "suggest.completionItemKindLabels": {
-    "keyword":       "\uf1de",
-    "variable":      "\ue79b",
-    "value":         "\uf89f",
-    "operator":      "\u03a8",
-    "function":      "\u0192",
-    "reference":     "\ufa46",
-    "constant":      "\uf8fe",
-    "method":        "\uf09a",
-    "struct":        "\ufb44",
-    "class":         "\uf0e8",
-    "interface":     "\uf417",
-    "text":          "\ue612",
-    "enum":          "\uf435",
-    "enumMember":    "\uf02b",
-    "module":        "\uf40d",
-    "color":         "\ue22b",
-    "property":      "\ue624",
-    "field":         "\uf9be",
-    "unit":          "\uf475",
-    "event":         "\ufacd",
-    "file":          "\uf723",
-    "folder":        "\uf114",
-    "snippet":       "\ue60b",
+    "keyword": "\uf1de",
+    "variable": "\ue79b",
+    "value": "\uf89f",
+    "operator": "\u03a8",
+    "function": "\u0192",
+    "reference": "\ufa46",
+    "constant": "\uf8fe",
+    "method": "\uf09a",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\uf417",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf40d",
+    "color": "\ue22b",
+    "property": "\ue624",
+    "field": "\uf9be",
+    "unit": "\uf475",
+    "event": "\ufacd",
+    "file": "\uf723",
+    "folder": "\uf114",
+    "snippet": "\ue60b",
     "typeParameter": "\uf728",
-    "default":       "\uf29c"
+    "default": "\uf29c"
   },
 
   "prettier.statusItemText": "Prettier",
@@ -87,11 +110,7 @@
   "eslint.enable": true,
   "eslint.autoFix": false,
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascript.jsx",
-    "javascriptreact"
-  ],
+  "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact"],
 
   "tsserver.trace.server": "messages",
 
