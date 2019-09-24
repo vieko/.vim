@@ -1,47 +1,105 @@
-" Section: Powerline
-" ------------------
+" Section: Statusline
+" -------------------
 
-" Airline
-let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts=1
-let g:airline_skip_empty_sections=0
-let g:airline_left_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_sep=''
-let g:airline_right_alt_sep=''
-let g:airline#extensions#coc#enabled=1
-let g:airline#extensions#coc#error_symbol='E:'
-let g:airline#extensions#coc#warning_symbol='W:'
-let g:airline#extensions#coc#stl_format_err='%E{[%e(#%fe)]}'
-let g:airline#extensions#coc#stl_format_warn='%W{[%w(#%fw)]}'
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" Lightline
+  let g:lightline = {
+    \ 'colorscheme': 'gruvbox',
+    \ 'active': {
+    \   'left': [
+    \             ['mode', 'paste'],
+    \             ['fugitive', 'filename'],
+    \             ['process']
+    \           ],
+    \   'right': [
+    \             ['cocerror','cocwarning','lineinfo'],
+    \             ['percent'],
+    \             ['fileformat', 'fileencoding', 'filetype']
+    \           ]
+    \ },
+    \ 'component': {
+    \   'lineinfo': ' %3l:%-2v', 'line': '%l', 'column': '%c', 'close': '%999X X ', 'winnr': '%{winnr()}'
+    \ },
+    \ 'component_function': {
+    \   'fugitive': 'LightlineFugitive',
+    \   'filename': 'LightlineFilename',
+    \   'process': 'LightlineRunningProcess',
+    \   'fileformat': 'LightlineFileformat',
+    \   'filetype': 'LightlineFiletype',
+    \   'fileencoding': 'LightlineFileencoding',
+    \   'mode': 'LightlineMode'
+    \ },
+    \ 'component_expand': {
+    \   'cocerror': 'LightlineStatusError',
+    \   'cocwarning': 'LightlineStatusWarning',
+    \ },
+    \ 'component_type': {
+    \   'cocerror': 'error',
+    \   'cocwarning': 'warning',
+    \ },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
+    \ }
 
-let g:airline#extensions#tmuxline#enabled=0
+  function! LightlineMode()
+    let fname = expand('%:t')
+    return &ft == 'help' ? 'HELP' : &ft == 'defx' ? 'DEFX' : winwidth(0) > 60 ? lightline#mode() : ''
+  endfunction
 
-let g:airline#extensions#tabline#enabled=0
-" let g:airline#extensions#tabline#show_splits=1
-" let g:airline#extensions#tabline#show_buffers=1
-" let g:airline#extensions#tabline#alt_sep=0
-" let g:airline#extensions#tabline#show_tabs=0
-" let g:airline#extensions#tabline#buffer_idx_mode=1
-" let g:airline#extensions#tabline#show_close_button=0
-" let g:airline#extensions#tabline#tab_nr_type=1
-" let g:airline#extensions#tabline#show_tab_nr=1
-" let g:airline#extensions#tabline#show_tab_type=1
-" let g:airline#extensions#tabline#tabs_label='tabs'
-" let g:airline#extensions#tabline#buffers_label='buffers'
-" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+  endfunction
 
-let g:airline_filetype_overrides = {
-\ 'defx':  ['defx', '%{b:defx.paths[0]}'],
-\ 'help':  [ 'Help', '%f' ],
-\ }
+  function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+  endfunction
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+  function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+  endfunction
 
-let g:airline_symbols.notexists=' ?'
-let g:airline_symbols.dirty='  '
+  function! LightlineModified()
+    return &ft =~ 'help\|defx' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
 
+  function! LightlineReadonly()
+    return &readonly && &filetype !~# '\v(help|defx)' ? '' : ''
+  endfunction
+
+  function! LightlineFilename()
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+    \ (&ft == 'defx' ? '' :
+    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+    \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+  endfunction
+
+  function! LightlineFugitive()
+    if &ft !~? 'defx' && exists('*fugitive#head')
+      let branch = fugitive#head()
+      return branch !=# '' ? ' '.branch : ''
+    endif
+    return ''
+  endfunction
+
+  function! LightlineStatusError() abort
+    let info = get(b:, 'coc_diagnostic_info', {})
+    if empty(info) | return '' | endif
+    let msgs = []
+    if get(info, 'error', 0)
+      call add(msgs, 'E:' . info['error'])
+    endif
+    return join(msgs, ' ')
+  endfunction
+
+  function! LightlineStatusWarning() abort
+    let info = get(b:, 'coc_diagnostic_info', {})
+    if empty(info) | return '' | endif
+    let msgs = []
+    if get(info, 'warning', 0)
+      call add(msgs, 'W:' . info['warning'])
+    endif
+    return join(msgs, ' ')
+  endfunction
+
+  function! LightlineRunningProcess() abort
+    return &filetype !~# '\v(help|defx)' ? get(g:, 'coc_status', '') : ''
+  endfunction

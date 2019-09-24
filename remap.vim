@@ -18,6 +18,7 @@ xnoremap p "_dP
 
 " some shortcut for git
 nnoremap gca :Gcommit -a -v<CR>
+
 " nnoremap gCc :Gcommit -v -- <C-R>=expand('%')<CR><CR>
 nnoremap gp :call <SID>gpush()<CR>
 
@@ -32,7 +33,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " use <cr> to confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " gruvbox overrides for tpope/unimpaired
 nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
@@ -51,10 +52,10 @@ nmap <silent> [w <Plug>(coc-diagnostic-prev)
 nmap <silent> ]w <Plug>(coc-diagnostic-next)
 
 " remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 " use K to show documentation in preview window
 " nnoremap <silent> K :call <SID>show_documentation()<CR>

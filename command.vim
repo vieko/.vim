@@ -1,12 +1,11 @@
 " Section: Commands
 " -----------------
 
+command! -nargs=0 Clean                                :call     s:Clean()
 command! -nargs=0 Lookup                               :call     s:ShowDocumentation()
-command! -nargs=0 Save                                 :call     s:Save()
 command! -nargs=0 Format                               :call     CocAction('format')
 command! -nargs=0 Prettier                             :call     CocAction('runCommand', 'prettier.formatFile')
 command! -nargs=0 OR                                   :call     CocAction('runCommand', 'editor.action.organizeImport')
-command! -nargs=0 RestartVim                           :call     CocAction('runCommand', 'session.restart')
 command! -nargs=0 Q                                    :qa!
 command! -nargs=0 V                                    :call     s:OpenTerminal()
 command! -nargs=0 Cd                                   :call     s:Gcd()
@@ -42,16 +41,27 @@ function! s:GrepArgs(...)
   return join(list, "\n")
 endfunction
 
-function! s:Save()
-  let file = $HOME.'/tmp.log'
-  let content = getline(1, '$')
-  call writefile(content, file)
-endfunction
-
 function! s:ShowDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
+endfunction
+
+function! s:Clean()
+  let view = winsaveview()
+  let ft = &filetype
+  " replace tab with 2 space
+  if index(['javascript', 'html', 'css', 'vim', 'php'], ft) != -1
+    silent! execute "%s/\<tab>/  /g"
+  endif
+  " replace tailing comma
+  if ft ==# 'javascript' || ft ==# 'typescript'
+    silent! execute '%s/;$//'
+  endif
+  " remove tailing white space
+  silent! execute '%s/\s\+$//'
+  " remove windows `\r`
+  call winrestview(view)
 endfunction

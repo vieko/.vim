@@ -8,6 +8,7 @@
   ],
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.enableFloatHighlight": false,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": false,
 
   "coc.source.around.firstMatch": false,
   "coc.source.buffer.firstMatch": false,

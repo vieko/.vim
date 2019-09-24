@@ -60,6 +60,7 @@ set signcolumn=yes
 set showtabline=0
 set synmaxcol=300
 set tabpagemax=10
+set tags+=gems.tags,stdlib.tags
 set termguicolors
 set title
 " set ttimeout
@@ -119,3 +120,8 @@ let g:gruvbox_invert_selection=0
 let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 
+" Section: Statusline
+" -------------------
+" if !has('gui_running')
+"   set t_Co=256
+" endif

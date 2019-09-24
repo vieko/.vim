@@ -38,6 +38,7 @@ augroup COC
   autocmd!
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 augroup end
 
 function! EmptyBuffer()
@@ -49,7 +50,7 @@ endfunction
 function! s:Highlight() abort
   if !has('gui_running') | hi normal guibg=NONE | endif
   hi link CocCursorRange         Search
-  hi link CocErrorSign           GruvboxRedSign
+  hi CocErrorSign                guifg=#fe8019 guibg=#3c3836 
   hi link CocWarningSign         GruvboxYellowSign
   hi link CocInfoSign            GruvboxBlueSign
   hi link CocHintSign            GruvboxBlueSign

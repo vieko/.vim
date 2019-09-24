@@ -23,7 +23,7 @@ let mapleader=" "
 "                b      → search current buffer
                  nnoremap <leader>/b :<C-u>CocList lines<CR>
 "                k      → look up in local docset
-                 nnoremap <silent><leader>/k :Lookup<CR>
+                 nnoremap <leader>/k :silent! :Lookup<CR>
 "                p      → search project
                  nnoremap <leader>/p :Rg<space>
 "        BUFFER  b
@@ -44,12 +44,17 @@ let mapleader=" "
 "                w      → save buffer
                  nnoremap <leader>bw :w!<CR>
 "        CODE    c
-"                W      → delete trailing newlines
+"                W      → clean up document
+                 nnoremap <leader>cW :Clean<CR>
 "                d      → jump to definition
+                 nmap <silent><leader>cd <Plug>(coc-definition)
 "                f      → format buffer / region
 "                k      → jump to documentation
+                 nnoremap <silent><leader>ck :silent! :Lookup<CR>
 "                w      → delete trailing whitespace
+                 nnoremap <leader>cw :Clean<CR>
 "                x      → list errors
+                 nnoremap <silent><leader>cx :<C-u>CocList diagnostics<CR>
 "        FILES   f
 "                .      → find file
                  nnoremap <leader>f. :<C-u>CocList files -F --hidden<CR>
@@ -57,32 +62,33 @@ let mapleader=" "
                  nnoremap <leader>f/ :<C-u>CocList files --hidden<CR>
 "                V      → browser neovim config
 "                R      → recent files
+                 nnoremap <leader>fR :<C-u>CocList mru<CR>
 "                v      → find file in neovim config
 "                r      → recent files
+                 nnoremap <leader>fr :<C-u>CocList mru<CR>
 "                s      → save file
+                 nnoremap <leader>fs :w!<CR>
 "                y      → yank filename
 "        GIT     g
 "        OPEN    o
 "                p      → project sidebar
                  nnoremap <silent><leader>op :call DefxOpen()<CR>
 "        PROJECT p
-"                P     → find file in project
+"                P      → find file in project
                  nnoremap <leader>pP :<C-u>CocList files -F --hidden<CR>
-"                /      → searcjh project
+"                /      → search project
                  nnoremap <leader>p/ :Rg<space>
+"                d      → change pwd to current working directory
+                 nnoremap <leader>pd :cd %:p:h<CR>:pwd<CR>
 "        HELP    h
 "                r      → reload vim
                  nnoremap <leader>hr :source ~/.config/nvim/.vimrc<CR>
 "                k      → look up in the docset
-                 nnoremap <leader>hh :call <SID>ShowDocumentation()<CR>
+                 nnoremap <silent><leader>hh :silent! :Lookup<CR>
 "                i      → highlight group under cursor
                  nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" change pwd to current working directory
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
 
 " clear highlights
 nnoremap <silent><Leader><CR> :noh<CR>
@@ -93,12 +99,7 @@ nnoremap <leader>rs :%s/\<<C-r><C-w>\>//g<left><left>
 " remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" clean some dirty charactors
-nnoremap <silent><leader>cl :<C-u>call <SID>Clean()<CR>
-
 nnoremap <silent> <leader>pp "0p
-" nnoremap <silent> <leader>o :call <SID>Open()<CR>
-
 
 " remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -147,24 +148,6 @@ function! s:GrepFromSelected(type)
   execute 'CocList grep '.word
 endfunction
 
-" simple clean utility
-function! s:Clean()
-  let view = winsaveview()
-  let ft = &filetype
-  " replace tab with 2 space
-  if index(['javascript', 'html', 'css', 'vim', 'php'], ft) != -1
-    silent! execute "%s/\<tab>/  /g"
-  endif
-  " replace tailing comma
-  if ft ==# 'javascript' || ft ==# 'typescript'
-    silent! execute '%s/;$//'
-  endif
-  " remove tailing white space
-  silent! execute '%s/\s\+$//'
-  " remove windows `\r`
-  call winrestview(view)
-endfunction
-
 function! s:Open()
   let res = CocAction('openLink')
   if res | return | endif
@@ -185,15 +168,3 @@ function! s:Open()
     echoerr output
   endif
 endfunction
-
-" function! s:ShowDocumentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-
-
-
