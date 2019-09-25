@@ -119,9 +119,3 @@ let g:gruvbox_italic=0
 let g:gruvbox_invert_selection=0
 let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
-
-" Section: Statusline
-" -------------------
-" if !has('gui_running')
-"   set t_Co=256
-" endif
