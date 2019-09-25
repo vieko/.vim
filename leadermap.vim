@@ -35,7 +35,7 @@ let mapleader=" "
                  nnoremap <leader>bd :bd<CR>
 "                k      → kill buffer
                  nnoremap <leader>bk :bd<CR>
-"                n      → nfindext buffer
+"                n      → next buffer
                  nnoremap <leader>bn :<C-u>CocNext<CR>
 "                p      → previous buffer
                  nnoremap <leader>bp :<C-u>CocPrev<CR>
@@ -89,6 +89,8 @@ let mapleader=" "
                  nnoremap <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+"                l      → toggle limelight
+                 nnoremap <leader>hl :Limelight!!<CR> 
 
 " clear highlights
 nnoremap <silent><Leader><CR> :noh<CR>

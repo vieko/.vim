@@ -19,7 +19,7 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
- 
+
 " vim-matchup
 let g:matchup_matchparen_deferred=1
 let g:matchup_matchparen_enabled=0
@@ -44,3 +44,7 @@ let g:netrw_bufsettings = "noma nomod nonu nobl nowrap ro nornu buftype=nofile"
 
 " polyglot
 let g:jsx_ext_required=0
+
+" limelight
+let g:limelight_conceal_guifg = '#3c3836'
+let g:limelight_paragraph_span = 0

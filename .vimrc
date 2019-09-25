@@ -15,6 +15,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'andymass/vim-matchup'
 Plug 'justinmk/vim-sneak'
+Plug 'junegunn/limelight.vim'
 " editor
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'

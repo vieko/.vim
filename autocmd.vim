@@ -48,7 +48,7 @@ function! EmptyBuffer()
 endfunction
 
 function! s:Highlight() abort
-  if !has('gui_running') | hi normal guibg=NONE | endif
+  if !has('gui_running') | hi Normal ctermbg=NONE guibg=NONE | endif
   hi link CocCursorRange         Search
   hi CocErrorSign                guifg=#fe8019 guibg=#3c3836 
   hi link CocWarningSign         GruvboxYellowSign
