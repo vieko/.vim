@@ -17,6 +17,8 @@ let mapleader=" "
          nnoremap <leader>< :<C-u>CocList buffers<CR>
 "        `       → switch to last buffer
          nnoremap <leader>` <C-^>
+"        RET     → clear highlights 
+         nnoremap <silent><leader><CR> :noh<CR>
 "        SEARCH  /
 "                d      → find file in current directory
                  nnoremap <leader>/d :<C-u>CocList files --hidden<CR>
@@ -26,6 +28,9 @@ let mapleader=" "
                  nnoremap <leader>/k :silent! :Lookup<CR>
 "                p      → search project
                  nnoremap <leader>/p :Rg<space>
+"                g      → search selected
+                 vnoremap <leader>/g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+                 nnoremap <leader>/g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 "        BUFFER  b
 "                B      → switch buffer
                  nnoremap <leader>bB :<C-u>CocList buffers<CR>
@@ -43,12 +48,19 @@ let mapleader=" "
                  nnoremap <leader>bs :w!<CR>
 "                w      → save buffer
                  nnoremap <leader>bw :w!<CR>
+"                r      → rename word
+                 nmap <leader>br <Plug>(coc-rename)
+"                g      → search selected
+                 vnoremap <leader>bg :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+                 nnoremap <leader>bg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 "        CODE    c
 "                W      → clean up document
                  nnoremap <leader>cW :Clean<CR>
 "                d      → jump to definition
                  nmap <silent><leader>cd <Plug>(coc-definition)
-"                f      → format buffer / region
+"                f      → format selection
+                 xmap <leader>cf <Plug>(coc-format-selected)
+                 nmap <leader>cf <Plug>(coc-format-selected)
 "                k      → jump to documentation
                  nnoremap <silent><leader>ck :silent! :Lookup<CR>
 "                w      → delete trailing whitespace
@@ -92,20 +104,7 @@ let mapleader=" "
 "                l      → toggle limelight
                  nnoremap <leader>hl :Limelight!!<CR> 
 
-" clear highlights
-nnoremap <silent><Leader><CR> :noh<CR>
-
-" replace all of current word
-nnoremap <leader>rs :%s/\<<C-r><C-w>\>//g<left><left>
-
-" remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
 nnoremap <silent> <leader>pp "0p
-
-" remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 " remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 " xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -117,23 +116,15 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " fix autofix problem of current line
 " nmap <leader>qf  <Plug>(coc-fix-current)
 
-" coc.nvim
 " nmap <leader>x  <Plug>(coc-cursors-operator)
-" nmap <leader>rn <Plug>(coc-rename)
 " nmap <leader>rf <Plug>(coc-refactor)
 " nmap <leader>ca <Plug>(coc-codelens-action)
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>ac <Plug>(coc-codeaction)
 " nmap <leader>di <Plug>(coc-diagnostic-info)
-" nmap <leader>qf <Plug>(coc-fix-current)
-nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+" nmap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
 " nmap <leader>dr <Plug>(coc-diagnostic-related)
 
-vnoremap <leader>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
-nnoremap <leader>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+" replace all of current word
+" nnoremap <leader>rs :%s/\<<C-r><C-w>\>//g<left><left>
 
 function! s:GrepFromSelected(type)
   let saved_unnamed_register = @@

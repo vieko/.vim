@@ -15,7 +15,7 @@ augroup common
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufEnter,FocusGained * checktime
 
-  " autocmd CursorHold * silent! call CocActionAsync('highlight')
+  autocmd CursorHold * silent! call CocActionAsync('highlight')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
