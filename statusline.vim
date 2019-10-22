@@ -17,7 +17,7 @@
     \           ]
     \ },
     \ 'component': {
-    \   'lineinfo': ' %3l:%-2v', 'line': '%l', 'column': '%c', 'close': '%999X X ', 'winnr': '%{winnr()}'
+    \   'lineinfo': ' %3l:%-2v', 'line': '%l', 'column': '%c', 'close': '%999X X ', 'winnr': '%{winnr()}'
     \ },
     \ 'component_function': {
     \   'fugitive': 'LightlineFugitive',
@@ -62,20 +62,20 @@
   endfunction
 
   function! LightlineReadonly()
-    return &readonly && &filetype !~# '\v(help|defx)' ? '' : ''
+    return &readonly && &filetype !~# '\v(help|defx)' ? '' : ''
   endfunction
 
   function! LightlineFilename()
     return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
     \ (&ft == 'defx' ? '' :
-    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+    \ '' != expand('%:t') ? ' '.expand('%:p:h:t').'   '.expand('%:t') : '[No Name]') .
     \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
   endfunction
 
   function! LightlineFugitive()
     if &ft !~? 'defx' && exists('*fugitive#head')
       let branch = fugitive#head()
-      return branch !=# '' ? ' '.branch : ''
+      return branch !=# '' ? ' '.branch : ''
     endif
     return ''
   endfunction

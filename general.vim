@@ -18,6 +18,8 @@ set dictionary=+$XDG_DATA_HOME/vim/dict/words
 set diffopt=vertical
 set display+=lastline
 set fillchars+=msgsep:-
+set foldlevel=1
+set foldtext=FoldText()
 set formatoptions+=j
 set formatoptions+=o
 set grepprg=rg\ --vimgrep\ $*
@@ -28,7 +30,7 @@ set hidden
 set history=2000
 " set hlsearch
 " set incsearch
-" set ignorecase
+set ignorecase
 set inccommand=nosplit
 set keywordprg=
 " set laststatus=2
@@ -60,7 +62,8 @@ set signcolumn=yes
 set showtabline=0
 set synmaxcol=300
 set tabpagemax=10
-set tags+=gems.tags,stdlib.tags
+" set tags+=gems.tags,stdlib.tags
+" set tags=./tags,./../tags,./../../tags,./../../../tags,tags
 set termguicolors
 set title
 " set ttimeout
@@ -71,6 +74,8 @@ set undolevels=500
 set undoreload=500
 set updatetime=100
 set visualbell
+set viewdir=$XDG_DATA_HOME/vim/views
+set viewoptions=cursor,folds,unix,slash
 set whichwrap=b,s,h,l,<,>,[,]
 " set wildmenu
 set wildmode=list:longest,full
@@ -119,3 +124,16 @@ let g:gruvbox_italic=0
 let g:gruvbox_invert_selection=0
 let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
+
+" Section: Functions
+" ------------------
+
+function! FoldText()
+  let line = getline(v:foldstart)
+  " lines that have been folded
+  let nl = v:foldend - v:foldstart + 1
+  let indent = repeat(' ', indent(v:foldstart))
+  let endcol = &colorcolumn ? &colorcolumn : &textwidth
+  let startcol = &columns < endcol ? &columns-4 : endcol
+  return indent . substitute(line,"^ *","",1)
+endfunction

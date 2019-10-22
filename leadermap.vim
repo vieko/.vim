@@ -32,6 +32,8 @@ let mapleader=" "
                  vnoremap <leader>/g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
                  nnoremap <leader>/g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
 "        BUFFER  b
+"                b      → search current buffer
+                 nnoremap <leader>bb :<C-u>CocList lines<CR>
 "                B      → switch buffer
                  nnoremap <leader>bB :<C-u>CocList buffers<CR>
 "                N      → new empty buffer
@@ -50,9 +52,13 @@ let mapleader=" "
                  nnoremap <leader>bw :w!<CR>
 "                r      → rename word
                  nmap <leader>br <Plug>(coc-rename)
+"                f      → format buffer
+                 nnoremap <leader>bf :Format<CR>
 "                g      → search selected
                  vnoremap <leader>bg :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
                  nnoremap <leader>bg :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+"                o      → organize import
+                 nnoremap <leader>bo :OR<CR>
 "        CODE    c
 "                W      → clean up document
                  nnoremap <leader>cW :Clean<CR>

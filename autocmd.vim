@@ -13,6 +13,7 @@ augroup common
 
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+  autocmd BufNewFile,BufRead *.prisma set filetype=graphql
   autocmd BufEnter,FocusGained * checktime
 
   autocmd CursorHold * silent! call CocActionAsync('highlight')
@@ -47,6 +48,12 @@ function! EmptyBuffer()
   endif
 endfunction
 
+augroup Persistence
+  autocmd!
+  autocmd BufWinLeave * if expand("%") != "" | silent! mkview | endif
+  autocmd BufWinEnter * if expand("%") != "" | silent! loadview | endif
+augroup end
+
 function! s:Highlight() abort
   if !has('gui_running') | hi Normal ctermbg=NONE guibg=NONE | endif
   hi link CocCursorRange         Search
@@ -61,7 +68,7 @@ function! s:Highlight() abort
   hi link MsgSeparator           MoreMsg
   hi VertSplit                   guifg=#3c3836
   hi ColorColumn                 guibg=#1d2021
-  hi HighlightedyankRegion       guibg=#d65d0e
+  hi HighlightedyankRegion       guifg=#282828 guibg=#d65d0e
   hi CursorLineNr                guifg=#7c6f64
   hi LineNr                      guifg=#504945
   hi CocFloating                 guifg=#928374 guibg=#504945

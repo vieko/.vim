@@ -118,6 +118,6 @@
   "typescript.suggest.enabled": false,
   "typescript.suggestionActions.enabled": false,
 
-  "javascript.suggest.enabled": true,
-  "javascript.suggestionActions.enabled": true
+  "javascript.suggest.enabled": false,
+  "javascript.suggestionActions.enabled": false
 }

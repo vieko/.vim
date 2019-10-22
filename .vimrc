@@ -10,7 +10,7 @@ Plug 'Sheerun/vim-polyglot'
 " statusline
 Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes' 
+" Plug 'vim-airline/vim-airline-themes'
 " interface
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'andymass/vim-matchup'
@@ -34,5 +34,6 @@ call plug#end()
 syntax on
 
 for s:path in split(glob('~/.config/nvim/*.vim'), "\n")
-	exe 'source ' . s:path
+  exe 'source ' . s:path
 endfor
+
