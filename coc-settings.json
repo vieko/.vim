@@ -16,7 +16,7 @@
   "yank.highlight.duration": 100,
   "yank.highlight.enable": true,
 
-  "list.indicator": "λ ",
+  "list.indicator": "⚡",
   "list.previewSplitRight": true,
 
   "list.source.grep.command": "rg",
@@ -55,8 +55,8 @@
 
   "diagnostic.level": "information",
   "diagnostic.infoSign": "··",
-  "diagnostic.hintSign": "",
-  "diagnostic.warningSign": "",
+  "diagnostic.hintSign": "~~",
+  "diagnostic.warningSign": "››",
   "diagnostic.errorSign": "××",
   "diagnostic.enableSign": true,
   "diagnostic.enable": true,

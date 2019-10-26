@@ -10,7 +10,7 @@ call defx#custom#column('git', 'indicators', {
 \ 'Renamed'   : '»',
 \ 'Unmerged'  : '-',
 \ 'Ignored'   : '╱',
-\ 'Deleted'   : '╳',
+\ 'Deleted'   : '×',
 \ 'Unknown'   : '?'
 \ })
 
@@ -25,7 +25,7 @@ function! DefxOpen(...) abort
     return execute(printf('
           \ Defx
           \ -toggle
-          \ -columns=mark:git:icons:filename:type
+          \ -columns=mark:git:filename:type
           \ -split=vertical
           \ -winwidth=40
           \ -direction=topleft %s
