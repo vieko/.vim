@@ -36,7 +36,7 @@ let g:netrw_list_hide = ',\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_winsize=20
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rmtrash'
-let g:netrw_bufsettings = "noma nomod nonu nobl nowrap ro nornu buftype=nofile"
+let g:netrw_bufsettings = 'noma nomod nonu nobl nowrap ro nornu buftype=nofile'
 
 " echodoc
 " let g:echodoc_enable_at_startup=1

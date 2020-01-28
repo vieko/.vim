@@ -14,6 +14,9 @@ augroup common
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   autocmd BufNewFile,BufRead *.prisma set filetype=graphql
+  autocmd BufNewFile,BufRead .babelrc set filetype=json
+  autocmd BufNewFile,BufRead .eslintrc set filetype=json
+  autocmd BufNewFile,BufRead .prettierrc set filetype=json
   autocmd BufEnter,FocusGained * checktime
 
   autocmd CursorHold * silent! call CocActionAsync('highlight')

@@ -66,6 +66,9 @@ nmap <silent> ]w <Plug>(coc-diagnostic-next)
 " omap if <Plug>(coc-funcobj-i)
 " omap af <Plug>(coc-funcobj-a)
 
+" avoid collision between <Tab> <C-i> with Karabiner
+nnoremap <F6> <C-i> 
+
 " Use <tab> for select selections ranges
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
