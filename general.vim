@@ -117,6 +117,8 @@ let g:html_indent_tags = 'li|p'
 
 " Section: Visual
 " ---------------
+" let &t_8f='u;%lu;%lum'
+" let &t_8b='u;%lu;%lum'
 
 set background=dark
 let g:gruvbox_bold=0
