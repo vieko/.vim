@@ -6,7 +6,13 @@ Plug 'Shougo/defx.nvim'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 " syntax
-Plug 'Sheerun/vim-polyglot'
+" Plug 'Sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', {'branch': 'main'}
+Plug 'jparise/vim-graphql'
 " statusline
 Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
@@ -14,6 +20,7 @@ Plug 'itchyny/lightline.vim'
 " interface
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'andymass/vim-matchup'
+" Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/limelight.vim'
 " editor
@@ -23,7 +30,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'takac/vim-hardtime'
+" Plug 'takac/vim-hardtime'
 " version control
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'

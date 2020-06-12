@@ -36,6 +36,9 @@ augroup common
   autocmd FileType json syntax match Comment +\/\/.\+$+
   autocmd FileType typescript setl formatexpr=CocAction('formatSelected')
   autocmd FileType typescript let b:coc_pairs_disabled = ['<']
+
+  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 augroup end
 
 augroup COC
@@ -70,7 +73,7 @@ function! s:Highlight() abort
   hi link CocHintVirtualText     GruvboxBg2
   hi link MsgSeparator           MoreMsg
   hi VertSplit                   guifg=#3c3836
-  hi ColorColumn                 guibg=#1d2021
+  hi ColorColumn                 guibg=#3c3836
   hi HighlightedyankRegion       guifg=#282828 guibg=#d65d0e
   hi CursorLineNr                guifg=#7c6f64
   hi LineNr                      guifg=#504945

@@ -1,5 +1,5 @@
 {
-  "coc.preferences.formatOnType": false,
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -86,18 +86,20 @@
   "suggest.completionItemKindLabels": {},
 
   "prettier.statusItemText": "Prettier",
+  "prettier.disableSuccessMessage": true,
 
   "eslint.enable": true,
   "eslint.autoFix": false,
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact"],
+  "eslint.filetypes": ["javascript", "javascript.jsx", "javascriptreact", "typescript", "typescriptreact", "typescript.tsx"],
 
   "tsserver.trace.server": "messages",
+  "tsserver.formatOnType": true,
 
   "typescript.suggest.enabled": false,
   "typescript.suggestionActions.enabled": false,
 
-  "javascript.suggest.enabled": true,
+  "javascript.suggest.enabled": false,
   "javascript.suggest.autoImports": true,
-  "javascript.suggestionActions.enabled": true
+  "javascript.suggestionActions.enabled": false
 }
