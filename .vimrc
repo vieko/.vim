@@ -33,6 +33,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wincent/loupe'
+Plug 'wincent/scalpel'
 " Plug 'takac/vim-hardtime'
 " version control
 Plug 'tpope/vim-fugitive'
