@@ -4,7 +4,7 @@ if !has('nvim') | finish | endif
 let g:python_host_prog = '/home/vieko/.local/share/pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/vieko/.local/share/pyenv/versions/neovim3/bin/python'
 let g:ruby_host_prog = exepath('neovim-ruby-host')
-let g:node_host_prog = '/usr/local/lib/node_modules/neovim/bin/cli.js'
+let g:node_host_prog = '/home/vieko/.local/share/nodenv/versions/12.14.1/bin/neovim-node-host'
 
 let g:terminal_color_0  = '#282828'
 let g:terminal_color_1  = '#cc241d'

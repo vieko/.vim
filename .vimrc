@@ -13,6 +13,8 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', {'branch': 'main'}
 Plug 'jparise/vim-graphql'
+" snippets
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile'  }
 " statusline
 Plug 'itchyny/lightline.vim'
 " Plug 'vim-airline/vim-airline'
@@ -30,6 +32,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'wincent/loupe'
 " Plug 'takac/vim-hardtime'
 " version control
 Plug 'tpope/vim-fugitive'

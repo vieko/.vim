@@ -85,6 +85,8 @@
   "suggest.echodocSupport": false,
   "suggest.completionItemKindLabels": {},
 
+  "tabnine.priority": 100,
+
   "prettier.statusItemText": "Prettier",
   "prettier.disableSuccessMessage": true,
 

@@ -5,6 +5,38 @@
 "   au InsertLeave *.js CocDisable
 " augroup END
 
+function! s:map(keys, name)
+  let l:center=get(g:, 'LoupeCenterResults', 1)
+  let l:center_string=l:center ? 'zz' : ''
+
+  let l:case=get(g:, 'LoupeCaseSettingsAlways', 1)
+
+  if a:keys ==# '#'
+    let l:action=l:case ? ":let @/='\\V\\<'.loupe#private#escape(expand('<cword>')).'\\>'<CR>:let v:searchforward=0<CR>n" : '#'
+  elseif a:keys ==# '*'
+    let l:action=l:case ? ":let @/='\\V\\<'.loupe#private#escape(expand('<cword>')).'\\>'<CR>:let v:searchforward=1<CR>n" : '*'
+  elseif a:keys ==# 'N'
+    let l:action='N'
+  elseif a:keys ==# 'g#'
+    let l:action=l:case ? ":let @/='\\V'.loupe#private#escape(expand('<cword>'))<CR>:let v:searchforward=0<CR>n" : 'g#'
+  elseif a:keys ==# 'g*'
+    let l:action=l:case ? ":let @/='\\V'.loupe#private#escape(expand('<cword>'))<CR>:let v:searchforward=1<CR>n" : 'g*'
+  elseif a:keys ==# 'n'
+    let l:action='n'
+  endif
+
+  if !hasmapto('<Plug>(Loupe' . a:name . ')')
+    execute 'nmap <silent> ' . a:keys . ' <Plug>(Loupe' . a:name . ')'
+  endif
+
+  execute 'nnoremap <silent> <Plug>(Loupe' . a:name . ')' .
+    \ ' ' .
+    \ l:action .
+    \ 'zv' .
+    \ l:center_string .
+    \ ':call loupe#hlmatch()<CR>'
+endfunction
+
 " vim-sneak
 let g:sneak#label=1
 let g:sneak#s_next=1
