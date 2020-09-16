@@ -19,7 +19,7 @@ augroup common
   autocmd BufNewFile,BufRead .prettierrc set filetype=json
   autocmd BufEnter,FocusGained * checktime
 
-  autocmd CursorHold * silent! call CocActionAsync('highlight')
+  " autocmd CursorHold * silent! call CocActionAsync('highlight')
   autocmd User CocQuickfixChange :CocList --normal quickfix
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 

@@ -109,6 +109,10 @@ let mapleader=" "
                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 "                l      → toggle limelight
                  nnoremap <leader>hl :Limelight!!<CR> 
+"                c      → toggle ruler 
+                 nnoremap <leader>hc :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
+"                f      → toggle infinite ruler
+                 nnoremap <leader>hf :execute (&colorcolumn == "" ? "let &colorcolumn=join(range(81,999),\",\")" : "set colorcolumn=\"\"")<CR>
 
 nnoremap <silent> <leader>pp "0p
 

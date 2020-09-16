@@ -100,7 +100,6 @@ set nowritebackup
 
 " set smarttab
 set cursorline
-" set colorcolumn=+1
 set expandtab
 set shiftround
 set shiftwidth=2
@@ -108,12 +107,14 @@ set smartcase
 set softtabstop=2
 set tabstop=2
 set textwidth=80
+" set colorcolumn=+1
 set number relativenumber
 set numberwidth=5
 set splitbelow
 set splitright
 set wrap
 let g:html_indent_tags = 'li|p'
+" let &colorcolumn=join(range(81,999),",")
 
 " Section: Visual
 " ---------------
