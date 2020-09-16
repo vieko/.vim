@@ -110,7 +110,7 @@ let mapleader=" "
 "                l      → toggle limelight
                  nnoremap <leader>hl :Limelight!!<CR> 
 "                c      → toggle ruler 
-                 nnoremap <leader>hc :execute "set colorcolumn=" . (&colorcolumn == "" ? "80" : "")<CR>
+                 nnoremap <leader>hc :execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>
 "                f      → toggle infinite ruler
                  nnoremap <leader>hf :execute (&colorcolumn == "" ? "let &colorcolumn=join(range(81,999),\",\")" : "set colorcolumn=\"\"")<CR>
 

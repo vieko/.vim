@@ -114,7 +114,7 @@ set splitbelow
 set splitright
 set wrap
 let g:html_indent_tags = 'li|p'
-" let &colorcolumn=join(range(81,999),",")
+let &colorcolumn=join(range(81,999),",")
 
 " Section: Visual
 " ---------------

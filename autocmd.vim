@@ -92,6 +92,7 @@ function! s:OnBufEnter()
     if !mapcheck('q', 'n')
       nnoremap <silent><buffer> q :<C-U>bd!<CR>
     endif
+    set colorcolumn=""
   elseif name =~# '/tmp/'
     setl bufhidden=delete
   endif
